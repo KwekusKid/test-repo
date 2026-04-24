@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── Page ─────────────────────────────────────────────────────────────────── */
+.so-page {
+    min-height: calc(100vh - 52px);
+    background: black;
+    padding: 36px 40px 56px;
+    font-family: 'JetBrains Mono', monospace;
+    box-sizing: border-box;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.so-header {
+    margin-bottom: 32px;
+}
+
+.so-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #f0f0ff;
+    margin: 0 0 6px;
+    letter-spacing: -0.03em;
+}
+
+.so-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.692);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* ── Summary row (debt + fixed) ──────────────────────────────────────────── */
+.so-summary-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.so-summary-card {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 28px 32px;
+    border-radius: 2px;
+    border: 0.9px solid rgba(255, 255, 255, 0.858);
+    background: rgba(0, 0, 0, 0.319);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.so-summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.so-debt-card::before {
+    background: linear-gradient(90deg, #f43f5e, #fb7185);
+}
+
+.so-fixed-card::before {
+    background: linear-gradient(90deg, #6366f1, #818cf8);
+}
+
+.so-summary-card:hover {
+    background: #16161f;
+    border-color: rgba(255, 255, 255, 0.596);
+}
+
+.so-summary-card:hover::before {
+    opacity: 1;
+}
+
+.so-card-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.so-card-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #3a3a5a;
+}
+
+.so-card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e0e0f0;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.so-card-amount {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.so-amount-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: #f0f0ff;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.so-amount-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #3a3a5a;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* ── Tags ────────────────────────────────────────────────────────────────── */
+.so-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.so-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    border: 1px solid #2a2a3a;
+    color: #5a5a7a;
+    background: transparent;
+}
+
+.so-tag-debt {
+    border-color: rgba(244, 63, 94, 0.25);
+    color: #fb7185;
+    background: rgba(244, 63, 94, 0.08);
+}
+
+.so-tag-fixed {
+    border-color: rgba(99, 102, 241, 0.25);
+    color: #818cf8;
+    background: rgba(99, 102, 241, 0.08);
+}
+
+.so-card-arrow {
+    font-size: 20px;
+    color: #2a2a3a;
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+    align-self: center;
+    margin-left: 16px;
+}
+
+.so-summary-card:hover .so-card-arrow {
+    color: #5a5a7a;
+    transform: translateX(4px);
+}
+
+/* ── Track cards row ─────────────────────────────────────────────────────── */
+.so-tracks-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.so-track-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.519);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    animation: soFadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--delay, 0s);
+}
+
+@keyframes soFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.so-track-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent, #6366f1);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.so-track-card:hover {
+    background: #16161f;
+    border-color: rgba(255, 255, 255, 0.596);
+}
+
+.so-track-card:hover::before {
+    opacity: 1;
+}
+
+.so-track-top {
+    padding: 24px 24px 0;
+}
+
+.so-track-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #e0e0f0;
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+}
+
+.so-track-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #3a3a5a;
+    margin: 0;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+}
+
+/* ── Image area ──────────────────────────────────────────────────────────── */
+.so-track-img-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 32px;
+}
+
+.so-track-img {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    /* invert so black icons show as white on dark bg */
+    filter: invert(1) brightness(0.7);
+    transition: filter 0.2s ease, transform 0.3s ease;
+}
+
+.so-track-card:hover .so-track-img {
+    filter: invert(1) brightness(1);
+    transform: scale(1.06);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.so-track-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #1a1a28;
+}
+
+.so-track-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #3a3a5a;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+}
+
+.so-track-card:hover .so-track-cta {
+    color: var(--accent, #6366f1);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .so-summary-row { grid-template-columns: 1fr; }
+    .so-tracks-row  { grid-template-columns: 1fr; }
+    .so-page        { padding: 24px 20px 40px; }
+}

@@ -1,0 +1,145 @@
+.sign-in-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 52px);
+  padding: 24px;
+  background: black;
+}
+
+.sign-in-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Logo */
+.sign-in-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.logo-placeholder {
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 2px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  padding: 10px 24px;
+  border-radius: 8px;
+}
+
+/* App Title */
+.sign-in-app-title {
+  font-size: 30px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* Card */
+.sign-in-card {
+  width: min(420px, 100%);
+  background: #000;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sign-in-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sign-in-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sign-in-form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.sign-in-form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.sign-in-form-group input:focus {
+  outline: none;
+  border-color: white;
+}
+
+/* Sign In Button — inverted to stand out */
+.sign-in-btn {
+  width: 100%;
+  padding: 13px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 4px;
+}
+
+.sign-in-btn:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Create account link */
+.sign-in-create {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.sign-in-create::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: white;
+  transition: width 0.2s;
+}
+
+.sign-in-create:hover {
+  color: white;
+}
+
+.sign-in-create:hover::after {
+  width: 100%;
+}
+
+.sign-in-error {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  padding: 8px 12px;
+}
