@@ -82,8 +82,8 @@ function App() {
 
         <main className={`page-content ${showNav ? 'nav-open' : ''}`}>
           <Routes>
-            <Route index element={<Home />} />
-            <Route path="/" element={<Home />} />
+            <Route index element={<SignIn />} />
+            <Route path="/" element={<SignIn />} />
             <Route path="/about" element={<About />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/create-account" element={<CreateAccount />} />
@@ -95,7 +95,7 @@ function App() {
             <Route path="/fixedCosts" element={<FixedCosts showNav={showNav} />} />
             <Route path="/debtPage" element={<DebtPage showNav={showNav} />} />
             <Route path="/track/:trackId" element={<TrackDetails />} />
-            <Route path="*" element={<Home />} />
+            <Route path="*" element={<SignIn />} />
           </Routes>
         </main>
       </Router>
