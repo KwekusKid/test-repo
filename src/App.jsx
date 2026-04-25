@@ -4,7 +4,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Home from './pages/home'
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import About from './pages/about'
 
 import SimulationOverview from './pages/simulationOverview'
@@ -33,6 +33,30 @@ const RouteWatcher = ({ onRouteChange }) => {
   return null;
 };
 
+const AppShell = ({ children, username, toggleNav }) => {
+  const location = useLocation();
+  const authRoutes = ['/', '/sign-in', '/create-account'];
+  const isAuthPage = authRoutes.includes(location.pathname);
+  const avatarLetter = username ? username.charAt(0).toUpperCase() : null;
+
+  return (
+    <>
+      {!isAuthPage && username && (
+        <header>
+          <button className="menu-toggle" onClick={toggleNav} aria-label="Toggle menu">
+            <BsLayoutSidebar />
+          </button>
+          <div className="header-user">
+            <span className="header-username">{username}</span>
+            <div className="header-avatar">{avatarLetter}</div>
+          </div>
+        </header>
+      )}
+      {children}
+    </>
+  );
+};
+
 function App() {
   const [showNav, setShowNav] = useState(false);
   const [username, setUsername] = useState(() => localStorage.getItem('username') || '');
@@ -57,36 +81,21 @@ function App() {
     setShowNav(prev => !prev);
   };
 
-  const avatarLetter = username ? username.charAt(0).toUpperCase() : null;
-
   return (
-    <>
-      <Router>
-        <RouteWatcher onRouteChange={closeNav} />
-        <header>
-          {username && (
-            <button className="menu-toggle" onClick={toggleNav} aria-label="Toggle menu">
-              <BsLayoutSidebar />
-            </button>
-          )}
-
-          {username && (
-            <div className="header-user">
-              <span className="header-username">{username}</span>
-              <div className="header-avatar">{avatarLetter}</div>
-            </div>
-          )}
-        </header>
-
+    <Router>
+      <RouteWatcher onRouteChange={closeNav} />
+      <AppShell username={username} toggleNav={toggleNav}>
         <Navbar show={showNav && !!username} onClose={closeNav} />
-
         <main className={`page-content ${showNav ? 'nav-open' : ''}`}>
           <Routes>
+            {/* Default: sign-in first */}
             <Route index element={<SignIn />} />
-            <Route path="/" element={<SignIn />} />
-            <Route path="/about" element={<About />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/create-account" element={<CreateAccount />} />
+
+            {/* App pages */}
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
             <Route path="/financialProfile" element={<FinancialProfile />} />
             <Route path="/simulationOverview" element={<SimulationOverview />} />
             <Route path="/simulation/:simulationId" element={<SimulationDetailed />} />
@@ -95,11 +104,13 @@ function App() {
             <Route path="/fixedCosts" element={<FixedCosts showNav={showNav} />} />
             <Route path="/debtPage" element={<DebtPage showNav={showNav} />} />
             <Route path="/track/:trackId" element={<TrackDetails />} />
-            <Route path="*" element={<SignIn />} />
+
+            {/* Any unknown path goes back to sign-in */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
-      </Router>
-    </>
+      </AppShell>
+    </Router>
   );
 }
 

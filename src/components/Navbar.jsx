@@ -23,7 +23,7 @@ const Navbar = ({ show, onClose }) => {
                 </button>
 
                 <ul>
-                    <li><Link to="/">MoneyShot</Link></li>
+                    <li><Link to="/home">MoneyShot</Link></li>
                     <li><Link to="/financialJournal">Financial Journal</Link></li>
                     <li><Link to="/debtPage">Debt Page</Link></li>
                     <li><Link to="/fixedCosts">Fixed Costs</Link></li>

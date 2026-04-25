@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../pagesCss/signIn.css';
 import ABSALogo from "../images/AbsaLogo.png";
@@ -16,8 +16,15 @@ const handleSubmit = (e) => {
     setError('Please enter your email address.');
     return;
   }
-  navigate('/financialProfile');
+  // Add this line — saves the part before @ as the username
+  localStorage.setItem('username', email.split('@')[0]);
+  navigate('/home');
 };
+
+useEffect(() => {
+  localStorage.removeItem('username');
+}, []);
+
 
   return (
     <div className="sign-in-page">
